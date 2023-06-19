@@ -35,7 +35,7 @@ describe("deterministicPartitionKey", () => {
     expect(givenKey).toBe("123");
   });
 
-  it("Returns the correct partition key if the initial partition key is not a string", () => {
+  it("Returns the correct partition key if the initial partition key is larger than MAX_PARTITION_KEY_LENGTH", () => {
     const partitionKey = "A".repeat(1024);
     const computedKey = deterministicPartitionKey({
       partitionKey,

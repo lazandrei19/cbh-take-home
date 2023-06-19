@@ -10,9 +10,10 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 
 ## Your Explanation Here
 1. I moved the constants out of the function, to improve visibility and ease of change.
-2. I looked for patterns where I could un-nest statements and realized that if I handle the `event === undefined` first, I could make the code easier to read and lessen the cognitive load of the developers looking at the code, by maintaining them maximum indent level to a minimum.
-3. After that, I realized that the code basically handled two cases:
-   1. A partition key was given: In this case we stringify it and then make sure it is smaller than the maximum
-   2. A partition key wasn't given, in which case we calculate the hash of the event
+2. I looked for patterns where I could un-nest statements, thus making the code easier to read and lessening the cognitive load of the developers looking at the code, by maintaining them maximum indent level to a minimum.
+3. After that, I realized that the code basically handled three cases:
+   1. There was no event provided, so we would return TRIVIAL_PARTITION_KEY.
+   2. An event was provided and a partition key wasn't given, in which case we calculate the hash of the event
+   3. An event was provided and a partition key was given, so we stringify the partition key (if needed) and then make sure it is smaller than the maximum
 4. I added JSDocs for better DX with code editors (a typescript compiler could have been added for an even better experience).
 5. I added test cases to test for repetability of the hash and for the different conditions, thus achieving a 100% code coverage.
