@@ -9,10 +9,10 @@ You've been asked to refactor the function `deterministicPartitionKey` in [`dpk.
 You will be graded on the exhaustiveness and quality of your unit tests, the depth of your refactor, and the level of insight into your thought process provided by the written explanation.
 
 ## Your Explanation Here
-I moved the constants out of the function, to improve visibility and ease of change.
-
-Then, I looked for patterns where I could un-nest statements and realized that if I handle the `event === undefined` first, I could make the code easier to read and lessen the cognitive load of the developers looking at the code, by maintaining them maximum indent level to a minimum.
-
-I also added JSDocs for better DX with code editors (a typescript compiler could have been added for an even better experience).
-
-I added test cases to test for repetability of the hash and for the different conditions, thus achieving a 100% code coverage.
+1. I moved the constants out of the function, to improve visibility and ease of change.
+2. I looked for patterns where I could un-nest statements and realized that if I handle the `event === undefined` first, I could make the code easier to read and lessen the cognitive load of the developers looking at the code, by maintaining them maximum indent level to a minimum.
+3. After that, I realized that the code basically handled two cases:
+   1. A partition key was given: In this case we stringify it and then make sure it is smaller than the maximum
+   2. A partition key wasn't given, in which case we calculate the hash of the event
+4. I added JSDocs for better DX with code editors (a typescript compiler could have been added for an even better experience).
+5. I added test cases to test for repetability of the hash and for the different conditions, thus achieving a 100% code coverage.
